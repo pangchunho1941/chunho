@@ -1,0 +1,80 @@
+<html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+      $.ajax({
+            type: 'GET',
+            url: 'http://rest.learncode.academy/api/johnbob/friends',
+            data:{todo:"jsonp"},
+          dataType: "json",
+       
+            success: function(data) {
+              alert("this"+JSON.stringify(data));
+         var json_obj = $.parseJSON(JSON.stringify(data));//parse JSON    
+            //  alert(json_obj[0].name);
+              
+         var output="<ul>";
+            for (var i in json_obj) 
+            {
+                output+="<li>" + json_obj[i].name + ",  " + json_obj[i].id + "</li>";
+            }
+            output+="</ul>";
+              
+              $('#mygithub').html(output);
+         //alert(JSON.stringify(data));
+             //alert(data[9].id);
+         //alert(JSON.stringify(data[8]['name']));
+           //   alert(JSON.stringify(data[8]));
+        // data2 = $.parseJSON(JSON.stringify(data)); 
+            //  alert(data2);
+         // alert(data2[8].id);
+              
+             // $('#mygithub').html(data.data['login']);
+              $('#mygithub').append(JSON.stringify(data[50]['name']));
+              
+                 var html = [];
+            /* parse JSON */
+          //  data = $.parseJSON(data);
+            /* loop through array */
+            $.each(data, function(index, d){            
+                html.push("Manufacturer : ", d.Manufacturer, ", ",
+                          "Sold : ", d.Sold, ", ", 
+                          "Month : ", d.Month, "<br>");
+            }); 
+               $("#div391").html(html.join('')).css("background-color", "orange");
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+      /*  $.get( "http://www.wunderground.com/weather-forecast/zmw:00000.1.59358", function( data ) {
+          alert(data);
+            $( ".result" ).html( data );
+           alert( "Load was performed." );
+           });*/
+ 
+});
+</script>
+<body>
+  <a href="/weather">Weather</a>
+Here is a page to call car API
+  <a href="run2.html">Weather</a>
+  
+ <!-- HTML -->
+<a name="#jsonp-ajax"></a>
+<div id="example-section39">    
+    <div>Car sale report</div>
+    <div id="div391"></div>
+  
+  
+  My Guthub
+  <div id="mygithub"></div>
+   
+</div>
+  
+  
+  
+  
+</body>
+</html>
